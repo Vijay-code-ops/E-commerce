@@ -1,0 +1,536 @@
+<html>
+<head>
+    <title>GenFusion</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">     
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- script
+    ================================================== -->
+    <script src="js/modernizr.js"></script>
+    <style>
+        body {
+            font-family: 'Jost', sans-serif;
+            background-color: #f8f8f8;
+            color: #343434;
+        }
+
+        .navbar-brand img.logo {
+            max-height: 80px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .swiper-button-next, .swiper-button-prev {
+            color: #000;
+            width: 27px;
+            height: 44px;
+            background-size: 27px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+        }
+
+        .swiper-pagination {
+            bottom: 10px !important;
+            text-align: center;
+        }
+
+        .product-card {
+            position: relative;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .image-holder {
+            width: 100%;
+            height: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background-color: #f8f8f8;
+        }
+
+        .product-card img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .cart-concern {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+        }
+
+        .cart-button a {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            background-color: #ffffff;
+            color: #000000;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        .card-detail {
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .card-title a {
+            text-transform: uppercase;
+            color: #000;
+            text-decoration: none;
+        }
+
+        .item-price {
+            color: #007bff;
+        }
+
+        .product-list, .comparison-product {
+            margin-top: 20px;
+            padding: 20px;
+            background: #ffffff;
+        }
+
+        .product {
+            background: #ffffff;
+            border: 1px solid #fafafa;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: #343434;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px;
+        }
+
+        .product:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .product img {
+            width: 100%;
+            max-height: 150px;
+            object-fit: contain;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .product h2 {
+            font-size: 1.25rem;
+            height: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .product-buttons {
+            margin-top: 10px;
+        }
+
+        .product-buttons button {
+            width: 100%;
+            margin-bottom: 10px;
+            height: 40px;
+            background: #007bff;
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .product-buttons button:hover {
+            background-color: #0056b3;
+        }
+
+        .selected-product-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: #ffffff;
+            color: #000000;
+            border-radius: 10px;
+        }
+
+        .selected-product-section img {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 10px;
+        }
+
+        .product-info {
+            flex: 1;
+            margin-left: 20px;
+        }
+
+        .product-info h2, .product-info p, .product-info button {
+            text-align: left;
+        }
+
+        .product-info .buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .star-rating {
+            font-size: 1.5rem;
+            color: rgb(70, 222, 252);
+        }
+
+        .features {
+            margin-top: 10px;
+        }
+
+        .features ul {
+            list-style-type: disc;
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+
+        .reviews {
+            margin-top: 20px;
+        }
+
+        .review {
+            margin-top: 10px;
+        }
+
+        .review p {
+            margin-bottom: 5px;
+        }
+
+        footer {
+            background: #ffffff;
+            color: #343434;
+            text-align: center;
+            padding: 20px 0;
+            position: relative;
+            width: 100%;
+            border-top: 1px solid #f1f1f1;
+        }
+    </style>
+
+</head>
+<body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" tabindex="0">
+    <div class="search-popup">
+        <div class="search-popup-container">
+
+        <form role="search" method="get" class="search-form" action="">
+            <input type="search" id="search-form" class="search-field" placeholder="Type and press enter" value="" name="s" />
+            <button type="submit" class="search-submit"><svg class="search"><use xlink:href="#search"></use></svg></button>
+        </form>
+
+        <h5 class="cat-list-title">Browse Categories</h5>
+        
+        <ul class="cat-list">
+            <li class="cat-list-item">
+            <a href="#" title="Mobile Phones">Mobile Phones</a>
+            </li>
+            <li class="cat-list-item">
+            <a href="#" title="Smart Watches">Smart Watches</a>
+            </li>
+            <li class="cat-list-item">
+            <a href="#" title="Headphones">Headphones</a>
+            </li>
+            <li class="cat-list-item">
+            <a href="#" title="Accessories">Accessories</a>
+            </li>
+            <li class="cat-list-item">
+            <a href="#" title="Monitors">Monitors</a>
+            </li>
+            <li class="cat-list-item">
+            <a href="#" title="Speakers">Speakers</a>
+            </li>
+            <li class="cat-list-item">
+            <a href="#" title="Memory Cards">Memory Cards</a>
+            </li>
+        </ul>
+
+        </div>
+    </div>
+    
+    <header id="header" class="site-header header-scrolled position-fixed text-black bg-light">
+    <nav id="header-nav" class="navbar navbar-expand-lg px-3 mb-3">
+        <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">
+            <img src="IMG/main-logo.png" class="logo">
+        </a>
+        <button class="navbar-toggler d-flex d-lg-none order-3 p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <svg class="navbar-icon">
+            <use xlink:href="#navbar-icon"></use>
+            </svg>
+        </button>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="bdNavbar" aria-labelledby="bdNavbarOffcanvasLabel">
+            <div class="offcanvas-header px-4 pb-0">
+            <a class="navbar-brand" href="index.html">
+                <img src="IMG/main-logo.png" class="logo">
+            </a>
+            <button type="button" class="btn-close btn-close-black" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#bdNavbar"></button>
+            </div>
+            <div class="offcanvas-body">
+            <ul id="navbar" class="navbar-nav text-uppercase justify-content-end align-items-center flex-grow-1 pe-3">
+                <li class="nav-item">
+                <a class="nav-link me-4 active" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link me-4" href="#company-services">Services</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link me-4" href="#mobile-products">Products</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link me-4" href="#yearly-sale">Sale</a>
+                </li>
+
+                <li class="nav-item">
+                <div class="user-items ps-5">
+                    <ul class="d-flex justify-content-end list-unstyled">
+                    <li class="search-item pe-3">
+                        <a href="#" class="search-button">
+                        <svg class="search">
+                            <use xlink:href="#search"></use>
+                        </svg>
+                        </a>
+                    </li>
+                    <li class="pe-3">
+                        <a href="#">
+                        <svg class="user">
+                            <use xlink:href="#user"></use>
+                        </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="cart.html">
+                        <svg class="cart">
+                            <use xlink:href="#cart"></use>
+                        </svg>
+                        </a>
+                    </li>
+                    </ul>
+                </div>
+                </li>
+            </ul>
+            </div>
+        </div>
+        </div> 
+    </nav>
+    </header>
+
+    <section id="company-services" class="padding-large">
+    <div class="container">
+        <div id="selected-product-section" class="selected-product-section"></div>
+        <div id="comparison-products" class="comparison-products row"></div>
+    </div>
+
+    <script>
+        // Get the URLSearchParams object
+        const urlParams = new URLSearchParams(window.location.search);
+    
+        // Retrieve the 'id' parameter
+        const productId = urlParams.get('id');
+        console.log(productId)
+        let products = [];
+        switch(productId){
+            case '1':
+
+                     products =[{ id: 1, name: 'Samsung Phone', category: 'phone', brand: 'Samsung', ram: 6, internalStorage: 128, price: 10000, image: '2.jpg', starRating: 4, description: 'Samsung Phone with 6GB RAM and 128GB Storage.', reviews: [{user: 'Alice', text: 'Good value for the price.'}, {user: 'Bob', text: 'Decent performance.'}] },
+                    { id: 2, name: 'Redmi Phone', category: 'phone', brand: 'Redmi', ram: 8, internalStorage: 256, price: 10000, image: 'redmi.jpg', starRating: 4, description: 'Redmi Phone with 8GB RAM and 256GB Storage.', reviews: [{user: 'Charlie', text: 'Great specs at a low price.'}, {user: 'David', text: 'Solid performance but a bit bulky.'}] },
+                    { id: 3, name: 'OnePlus Phone', category: 'phone', brand: 'OnePlus', ram: 12, internalStorage: 512, price: 20000, image: 'oneplus.jpg', starRating: 5, description: 'OnePlus Phone with 12GB RAM and 512GB Storage.', reviews: [{user: 'Eve', text: 'Exceptional performance and speed.'}, {user: 'Frank', text: 'Top-notch build quality.'}] },
+                    { id: 4, name: 'Sony Phone', category: 'phone', brand: 'Sony', ram: 4, internalStorage: 64, price: 8000, image: '1.jpg', starRating: 3, description: 'Sony Phone with 4GB RAM and 64GB Storage.', reviews: [{user: 'Grace', text: 'Basic phone, not very impressive.'}, {user: 'Hank', text: 'It gets the job done but feels outdated.'}] },
+                    ];
+                    break;
+            case '2':
+                    
+            products =[{ id: 1, name: 'Dell Inspiron', category: 'laptop', brand: 'Dell', ram: 8, internalStorage: 256, price: 50000, image: 'dell.jpg', starRating: 4, description: 'Dell Inspiron with 8GB RAM and 256GB SSD.', reviews: [{user: 'Alice', text: 'Great performance for daily tasks.'}, {user: 'Bob', text: 'Solid build quality.'}] },
+                    { id: 2, name: 'HP Pavilion', category: 'laptop', brand: 'HP', ram: 16, internalStorage: 512, price: 60000, image: 'hp.jpg', starRating: 5, description: 'HP Pavilion with 16GB RAM and 512GB SSD.', reviews: [{user: 'Charlie', text: 'Excellent for gaming and heavy tasks.'}, {user: 'David', text: 'High performance and great display.'}] },
+                    { id: 3, name: 'Lenovo ThinkPad', category: 'laptop', brand: 'Lenovo', ram: 16, internalStorage: 1, price: 70000, image: 'lenovo.jpg', starRating: 5, description: 'Lenovo ThinkPad with 16GB RAM and 1TB SSD.', reviews: [{user: 'Eve', text: 'Ideal for professionals.'}, {user: 'Frank', text: 'Robust and reliable.'}] },
+                    { id: 4, name: 'Apple MacBook Pro', category: 'laptop', brand: 'Apple', ram: 8, internalStorage: 512, price: 120000, image: 'apple.jpg', starRating: 5, description: 'Apple MacBook Pro with 8GB RAM and 512GB SSD.', reviews: [{user: 'Grace', text: 'Sleek design and powerful performance.'}, {user: 'Hank', text: 'Best for creative professionals.'}] },
+                ];
+                break;
+            case '3':
+            products =[
+                    { id: 1, name: 'Samsung Smartwatch', category: 'smartwatch', brand: 'Samsung', batteryLife: 24, displaySize: 1.4, price: 300, image: 'samsung (2).jpg', starRating: 4, description: 'Samsung Smartwatch with 24-hour battery life and 1.4-inch display.', reviews: [{user: 'Alice', text: 'Good value for the price.'}, {user: 'Bob', text: 'Decent performance.'}] },
+                    { id: 2, name: 'Apple Watch', category: 'smartwatch', brand: 'Apple', batteryLife: 18, displaySize: 1.65, price: 400, image: 'apple (2).jpg', starRating: 5, description: 'Apple Watch with 18-hour battery life and 1.65-inch display.', reviews: [{user: 'Charlie', text: 'Great specs at a low price.'}, {user: 'David', text: 'Solid performance but a bit bulky.'}] },
+                    { id: 3, name: 'Fitbit Versa', category: 'smartwatch', brand: 'Fitbit', batteryLife: 96, displaySize: 1.3, price: 200, image: 'fitbit.jpg', starRating: 3, description: 'Fitbit Versa with 96-hour battery life and 1.3-inch display.', reviews: [{user: 'Eve', text: 'Exceptional performance and speed.'}, {user: 'Frank', text: 'Top-notch build quality.'}] },
+                    { id: 4, name: 'Garmin Smartwatch', category: 'smartwatch', brand: 'Garmin', batteryLife: 120, displaySize: 1.2, price: 350, image: 'venu.jpg', starRating: 4, description: 'Garmin Smartwatch with 120-hour battery life and 1.2-inch display.', reviews: [{user: 'Grace', text: 'Basic watch, not very impressive.'}, {user: 'Hank', text: 'It gets the job done but feels outdated.'}] },
+                ];
+                break;
+            case '4':
+            products =[
+                    { id: 1, name: 'Apple AirPods Pro', category: 'airpods', brand: 'Apple', batteryLife: 4.5, price: 249, rating: 4.5, features: ['Active Noise Cancellation', 'Transparency Mode'], reviews: [{user: 'Alice', text: 'Great noise cancellation and sound quality.'}, {user: 'Bob', text: 'Comfortable and effective.'}], image: 'apple (3).jpg' },
+                    { id: 2, name: 'Samsung Galaxy Buds+', category: 'airpods', brand: 'Samsung', batteryLife: 11, price: 149, rating: 4.3, features: ['Long Battery Life', 'Ambient Sound'], reviews: [{user: 'Charlie', text: 'Good battery life and sound.'}, {user: 'David', text: 'Decent for the price.'}], image: 'samsung (3).jpg' },
+                    { id: 3, name: 'Sony WF-1000XM3', category: 'airpods', brand: 'Sony', batteryLife: 6, price: 229, rating: 4.6, features: ['Noise Cancellation', 'High-Resolution Audio'], reviews: [{user: 'Eve', text: 'Excellent sound quality and noise cancellation.'}, {user: 'Frank', text: 'A bit bulky but worth it.'}], image: 'sony (2).jpg' },
+                    { id: 4, name: 'Bose QuietComfort Earbuds', category: 'airpods', brand: 'Bose', batteryLife: 6, price: 279, rating: 4.7, features: ['Superior Noise Cancellation', 'Comfortable Fit'], reviews: [{user: 'Grace', text: 'Top-notch noise cancellation and comfort.'}, {user: 'Hank', text: 'Expensive but excellent quality.'}], image: 'bose.jpg' },
+                ];
+                break;
+            case '5':
+            products =[
+                    { id: 1, name: 'Samsung 55" 4K TV', category: 'tv', brand: 'Samsung', screenSize: 55, resolution: '4K', price: 500, image: 'samsung.jpg', starRating: 4, description: 'Samsung 55 inch 4K TV with Smart features.', reviews: [{user: 'Alice', text: 'Great picture quality.'}, {user: 'Bob', text: 'Excellent value for money.'}] },
+                    { id: 2, name: 'LG 65" 8K TV', category: 'tv', brand: 'LG', screenSize: 65, resolution: '8K', price: 1500, image: 'lg.jpg', starRating: 5, description: 'LG 65 inch 8K TV with advanced features.', reviews: [{user: 'Charlie', text: 'Outstanding picture and sound quality.'}, {user: 'David', text: 'High-end TV with top features.'}] },
+                    { id: 3, name: 'Sony 50" Full HD TV', category: 'tv', brand: 'Sony', screenSize: 50, resolution: 'Full HD', price: 350, image: 'sony.jpg', starRating: 3, description: 'Sony 50 inch Full HD TV with basic features.', reviews: [{user: 'Eve', text: 'Good for basic needs.'}, {user: 'Frank', text: 'Not bad for the price.'}] },
+                    { id: 4, name: 'TCL 43" 4K TV', category: 'tv', brand: 'TCL', screenSize: 43, resolution: '4K', price: 250, image: 'tcl.jpg', starRating: 4, description: 'TCL 43 inch 4K TV with Smart capabilities.', reviews: [{user: 'Grace', text: 'Affordable 4K TV with decent performance.'}, {user: 'Hank', text: 'Good choice for the price.'}] },
+                ];
+                break;
+            case '6':
+            products =[
+                { id: 1, name: 'Samsung French Door', category: 'fridge', brand: 'Samsung', capacity: 25, energyRating: 'A++', price: 1500, image: 'samsung (4).jpg', rating: 4.5, features: ['Smart Cooling', 'Auto Ice Maker'], reviews: [{user: 'Alice', text: 'Excellent performance and spacious.'}, {user: 'Bob', text: 'Great features but expensive.'}] },
+                { id: 2, name: 'LG InstaView', category: 'fridge', brand: 'LG', capacity: 23, energyRating: 'A++', price: 1800, image: 'lg (2).jpg', rating: 4.7, features: ['Knock Twice to See Inside', 'Freshness Maintenance'], reviews: [{user: 'Charlie', text: 'Innovative design and great functionality.'}, {user: 'David', text: 'A bit pricey but worth it.'}] },
+                { id: 3, name: 'Whirlpool Double Door', category: 'fridge', brand: 'Whirlpool', capacity: 20, energyRating: 'A+', price: 1000, image: 'whirlpool.jpg', rating: 4.2, features: ['Wings of Air Technology', 'Frost-Free'], reviews: [{user: 'Eve', text: 'Affordable and reliable.'}, {user: 'Frank', text: 'Basic features but effective.'}] },
+                { id: 4, name: 'Bosch Serie 6', category: 'fridge', brand: 'Bosch', capacity: 21, energyRating: 'A++', price: 1200, image: 'bosch.jpg', rating: 4.4, features: ['MultiAirflow System', 'LED Lighting'], reviews: [{user: 'Grace', text: 'Nice design and efficient cooling.'}, {user: 'Hank', text: 'Good value for money.'}] },
+            ];
+            break;
+            case '7':
+            products =[
+                { id: 1, name: 'JBL Flip 5', category: 'bluetooth speaker', brand: 'JBL', batteryLife: 12, price: 120, rating: 4.5, features: ['Waterproof', 'Bluetooth 4.2'], reviews: [{user: 'Alice', text: 'Great sound quality and durable.'}, {user: 'Bob', text: 'The battery life is impressive.'}] , image: 'jbl.jpg' },
+                { id: 2, name: 'Bose SoundLink Micro', category: 'bluetooth speaker', brand: 'Bose', batteryLife: 6, price: 100, rating: 4.7, features: ['Waterproof', 'Ultra-portable'], reviews: [{user: 'Charlie', text: 'Small size but powerful sound.'}, {user: 'David', text: 'The design is compact and sturdy.'}], image: 'bose (2).jpg' },
+                { id: 3, name: 'Sony SRS-XB23', category: 'bluetooth speaker', brand: 'Sony', batteryLife: 12, price: 99, rating: 4.4, features: ['Extra Bass', 'Water-resistant'], reviews: [{user: 'Eve', text: 'Good bass and water resistance.'}, {user: 'Frank', text: 'Great value for the price.'}], image: 'sony (3).jpg' },
+                { id: 4, name: 'Ultimate Ears BOOM 3', category: 'bluetooth speaker', brand: 'Ultimate Ears', batteryLife: 15, price: 150, rating: 4.6, features: ['360-degree sound', 'Waterproof'], reviews: [{user: 'Grace', text: 'Excellent sound in all directions.'}, {user: 'Hank', text: 'Very durable and long-lasting battery.'}], image: 'boom.jpg' },
+            ];
+            break;
+    
+            case '8':
+            products =[
+                { id: 1, name: 'LG Front Load Washer', category: 'washing machine', brand: 'LG', capacity: '7 kg', price: 600, rating: 4.3, features: ['Front Load', 'Energy Efficient'], reviews: [{user: 'Alice', text: 'Excellent cleaning performance.'}, {user: 'Bob', text: 'Quiet operation and energy efficient.'}], image: 'lg (3).jpg' },
+                { id: 2, name: 'Samsung Top Load Washer', category: 'washing machine', brand: 'Samsung', capacity: '8 kg', price: 550, rating: 4.5, features: ['Top Load', 'Auto Balance'], reviews: [{user: 'Charlie', text: 'Great washing machine with good features.'}, {user: 'David', text: 'The auto-balance feature is very useful.'}], image: 'samsung (6).jpg' },
+                { id: 3, name: 'Bosch Front Load Washer', category: 'washing machine', brand: 'Bosch', capacity: '6 kg', price: 700, rating: 4.7, features: ['Front Load', 'High Efficiency'], reviews: [{user: 'Eve', text: 'Very efficient and quiet.'}, {user: 'Frank', text: 'The build quality is excellent.'}], image: 'bosch (2).jpg' },
+                { id: 4, name: 'Whirlpool Top Load Washer', category: 'washing machine', brand: 'Whirlpool', capacity: '9 kg', price: 500, rating: 4.2, features: ['Top Load', 'Large Capacity'], reviews: [{user: 'Grace', text: 'Perfect for large families.'}, {user: 'Hank', text: 'Good performance and capacity.'}], image: 'whirlpool (2).jpg' },
+            ];
+            break;
+            case '9':
+            products =[
+                { id: 1, name: 'LG Split AC', category: 'air conditioner', brand: 'LG', coolingCapacity: '1.5 Ton', price: 450, energyRating: '5 Star', warranty: '1 Year', features: ['Energy Efficient', 'Silent Operation'], reviews: [{user: 'Alice', text: 'Excellent cooling and low noise.'}, {user: 'Bob', text: 'Highly energy-efficient and effective.'}], image: 'lg (4).jpg' },
+                { id: 2, name: 'Samsung Window AC', category: 'air conditioner', brand: 'Samsung', coolingCapacity: '1 Ton', price: 400, energyRating: '3 Star', warranty: '2 Years', features: ['Compact Design', 'Auto Restart'], reviews: [{user: 'Charlie', text: 'Compact and effective for small rooms.'}, {user: 'David', text: 'Auto-restart feature is a plus.'}], image: 'samsung (7).jpg' },
+                { id: 3, name: 'Daikin Inverter AC', category: 'air conditioner', brand: 'Daikin', coolingCapacity: '2 Ton', price: 600, energyRating: '5 Star', warranty: '1 Year', features: ['Inverter Technology', 'Quick Cooling'], reviews: [{user: 'Eve', text: 'Excellent performance with inverter technology.'}, {user: 'Frank', text: 'Quick and efficient cooling.'}], image: 'dunki.jpg' },
+                { id: 4, name: 'Blue Star Split AC', category: 'air conditioner', brand: 'Blue Star', coolingCapacity: '1.5 Ton', price: 500, energyRating: '4 Star', warranty: '1 Year', features: ['Sleek Design', 'Low Power Consumption'], reviews: [{user: 'Grace', text: 'Stylish and efficient air conditioner.'}, {user: 'Hank', text: 'Good performance and low power usage.'}], image: 'bluestar.jpg' },
+            ];
+            break;
+            case '10':
+            products =  [
+                { id: 1, name: 'Anker PowerCore 10000', category: 'powerbank', brand: 'Anker', capacity: '10000mAh', price: 30, rating: 4.5, features: ['Compact Size', 'High Capacity'], reviews: [{user: 'Alice', text: 'Great battery life and compact design.'}, {user: 'Bob', text: 'Perfect for travel.'}], image: 'p1.jpg' },
+                { id: 2, name: 'RAVPower 20000mAh', category: 'powerbank', brand: 'RAVPower', capacity: '20000mAh', price: 40, rating: 4.7, features: ['High Capacity', 'Fast Charging'], reviews: [{user: 'Charlie', text: 'Very efficient for long trips.'}, {user: 'David', text: 'Charges devices quickly.'}], image: 'p2.jpg' },
+                { id: 3, name: 'Aukey 10000mAh', category: 'powerbank', brand: 'Aukey', capacity: '10000mAh', price: 25, rating: 4.2, features: ['Compact Size', 'Affordable'], reviews: [{user: 'Eve', text: 'Good value for the price.'}, {user: 'Frank', text: 'Decent performance.'}], image: 'p3.jpg' },
+                { id: 4, name: 'Zendure A8 QC', category: 'powerbank', brand: 'Zendure', capacity: '26800mAh', price: 50, rating: 4.8, features: ['Large Capacity', 'Durable'], reviews: [{user: 'Grace', text: 'Excellent build quality and capacity.'}, {user: 'Hank', text: 'Perfect for heavy use.'}], image: 'p4.jpg' },
+            ];
+            break;
+            default:
+                console.error('Invalid product ID');
+                break;
+        }
+    
+        if (products.length > 0) {
+    const selectedProduct = products[0]; // Replace 0 with the appropriate index based on selection logic
+    displaySelectedProduct(selectedProduct);
+}
+
+        function displaySelectedProduct(product) {
+            const selectedProductSection = document.getElementById('selected-product-section');
+            selectedProductSection.innerHTML = `
+                <div>
+                    <img src="IMG/${product.image}" alt="${product.name}">
+                </div>
+                <div class="product-info">
+                    <h2>${product.name}</h2>
+                    <p>Brand: ${product.brand}</p>
+                    <p>RAM: ${product.ram} GB</p>
+                    <p>Internal Storage: ${product.internalStorage} GB</p>
+                    <p>Price: ${product.price} $</p>
+                    <p>${product.description}</p>
+                    <div class="star-rating">
+                        ${'★'.repeat(product.starRating)}${'☆'.repeat(5 - product.starRating)}
+                    </div>
+                    <div class="features">
+                        <h3>Features:</h3>
+                        <ul>
+                            <li>Brand: ${product.brand}</li>
+                            <li>RAM: ${product.ram} GB</li>
+                            <li>Internal Storage: ${product.internalStorage} GB</li>
+                            <li>Price: ${product.price} $</li>
+                        </ul>
+                    </div>
+                    <div class="reviews">
+                        <h3>Customer Reviews:</h3>
+                        ${product.reviews.map(review => `<div class="review"><p><strong>${review.user}:</strong> ${review.text}</p></div>`).join('')}
+                    </div>
+                    <div class="buttons">
+                        <button class="btn btn-success" onclick="addToCart(${product.id})">Add to Cart</button>
+                        <button class="btn btn-primary" onclick="compareProduct(${product.id})">Compare</button>
+                    </div>
+                </div>
+            `;
+            }
+            function compareProduct(productId) {
+    const product = products.find(p => p.id === productId);
+    if (!product) return;
+
+    // Filter products based on the selected product's category and exclude the selected product
+    const comparisonProducts = products.filter(p => p.category === product.category && p.id !== product.id);
+
+    const comparisonProductDiv = document.getElementById('comparison-products');
+    comparisonProductDiv.innerHTML = '';
+
+    comparisonProducts.forEach(comparisonProduct => {
+        const comparisonDiv = document.createElement('div');
+        comparisonDiv.className = 'product col-md-3';
+        comparisonDiv.innerHTML = `
+            <img src="IMG/${comparisonProduct.image}" alt="${comparisonProduct.name}">
+            <h2>${comparisonProduct.name}</h2>
+            <p>Brand: ${comparisonProduct.brand}</p>
+            <p>RAM: ${comparisonProduct.ram || 'N/A'} GB</p>
+            <p>Internal Storage: ${comparisonProduct.internalStorage || 'N/A'} GB</p>
+            <p>Price: ${comparisonProduct.price} $</p>
+            <p>${comparisonProduct.description || 'No description available.'}</p>
+            <div class="star-rating">
+                ${'★'.repeat(comparisonProduct.starRating || 0)}${'☆'.repeat(5 - (comparisonProduct.starRating || 0))}
+            </div>
+            <div class="buttons">
+                <button class="btn btn-success" onclick="addToCart(${comparisonProduct.id})">Add to Cart</button>
+            </div>
+        `;
+        comparisonProductDiv.appendChild(comparisonDiv);
+    });
+}
+
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                alert(`${product.name} has been added to your cart.`);
+            }
+        }
+        </script>
+<script>window.$zoho=window.$zoho || {};$zoho.salesiq=$zoho.salesiq||{ready:function(){}}</script><script id="zsiqscript" src="https://salesiq.zohopublic.in/widget?wc=siqa7fc2c3a33a2c33c24a91fc6f5e7b2e096d785b493f09424813e06bb38c73778" defer></script>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
